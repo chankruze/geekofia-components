@@ -1,0 +1,103 @@
+// Author: chankruze (chankruze@geekofia.in)
+// Created: Sun Nov 29 2020 15:29:34 GMT+0530 (India Standard Time)
+
+// Copyright (c) Geekofia 2020 and beyond
+
+// variables
+
+$color_light: #ffffff
+$color_dark: #ff9216
+
+// light
+$bg_fnb_root: #ffffff
+$txt_fnb_root: #000
+$link_fnb: #252525
+$link_fnb_hover: $color_light
+$bg_link_fnb_hover: $color_dark
+$shadow_color: #d8d8d8
+
+// dark
+$bg_fnb_root_dark: #252525
+$txt_fnb_root_dark: #ffffff
+$link_fnb_dark: #ffffff
+$link_fnb_hover_dark: $color_dark
+$bg_link_fnb_hover_dark: $color_light
+
+// classes
+.fnb_root
+    color: $txt_fnb_root
+    background: $bg_fnb_root
+    border-radius: 1rem
+    padding: 0.25rem
+    display: flex
+    flex-direction: row
+    justify-content: space-evenly
+    align-items: flex-end
+    flex-wrap: wrap
+    box-shadow: 0 0 5px $shadow_color
+    -webkit-background-clip: padding-box
+    -moz-background-clip: padding
+    background-clip: padding-box
+    position: fixed
+    width: max-content
+    left: 0
+    right: 0
+    bottom: 0
+    margin-left: auto
+    margin-right: auto
+    margin-bottom: 1rem
+
+    &.dark
+        color: $txt_fnb_root_dark
+        background: $bg_fnb_root_dark
+        box-shadow: none
+
+    & .fnb_menu_wrapper:nth-child(even)
+        margin-right: 0.5rem
+        margin-left: 0.5rem
+
+.fnb_menu_wrapper
+    flex: 1
+    // background: orange
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    border-radius: 1rem
+    -webkit-background-clip: padding-box
+    -moz-background-clip: padding
+    background-clip: padding-box
+
+    a
+        text-decoration: none
+        color: $link_fnb
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center
+        padding: 0.5rem
+        transition: all 200ms ease-in-out
+        border-radius: 1rem
+
+        &:hover
+            color: $link_fnb_hover
+            // transform: scale(1.1)
+            background: $bg_link_fnb_hover
+
+    &.dark
+        a
+            color: $link_fnb_dark
+
+        a:hover
+            color: $link_fnb_hover_dark
+            background: $bg_link_fnb_hover_dark
+
+    &.active
+        a
+            color: $link_fnb_hover
+            background: $bg_link_fnb_hover
+
+    &.active.dark
+        a
+            color: $link_fnb_hover_dark
+            background: $bg_link_fnb_hover_dark
