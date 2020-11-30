@@ -1,0 +1,8 @@
+node_modules
+*.log
+
+# build outs
+/*.js
+/navbars
+/inputs
+/cards

@@ -1,0 +1,47 @@
+{
+	"name": "geekofia-components",
+	"description": "Some personal handy custom React Components",
+	"version": "1.0.0",
+	"main": "index.js",
+	"license": "GPL-3.0",
+	"author": {
+		"name": "Chandan Kumar Mandal",
+		"email": "chankruze@geekofia.in",
+		"url": "https://github.com/chankruze"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/chankruze/geekofia-components/"
+	},
+	"bugs": {
+		"url": "https://github.com/chankruze/geekofia-components/issues"
+	},
+	"keywords": [
+		"react",
+		"geekofia",
+		"geekofia-components",
+		"custom-react-components",
+		"chankruze"
+	],
+	"scripts": {
+		"build": "babel src --out-dir . && node-sass src -o . --output-style compressed",
+		"bump": "npm version",
+		"prepublishOnly": "yarn build",
+		"watch": "nodemon --watch src --exec \"yarn build\"",
+		"refresh": "yarn install --force",
+		"demo-install": "yarn build && yarn pack && mv geekofia-*.tgz demo && cd demo && yarn add ./geekofia-*.tgz && rm ./geekofia-*.tgz",
+		"demo": "yarn demo-install && cd demo && yarn dev"
+	},
+	"devDependencies": {
+		"@babel/cli": "^7.12.8",
+		"@babel/core": "^7.12.9",
+		"@babel/preset-env": "^7.12.7",
+		"@babel/preset-react": "^7.12.7",
+		"node-sass": "5.0.0",
+		"nodemon": "^2.0.6",
+		"react": "^17.0.1"
+	},
+	"dependencies": {
+		"classnames": "2.2.6"
+	}
+}
