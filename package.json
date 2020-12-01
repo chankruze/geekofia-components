@@ -1,7 +1,7 @@
 {
 	"name": "geekofia-components",
 	"description": "Some personal handy custom React Components",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"main": "index.js",
 	"license": "GPL-3.0",
 	"author": {
@@ -37,11 +37,9 @@
 		"@babel/core": "^7.12.9",
 		"@babel/preset-env": "^7.12.7",
 		"@babel/preset-react": "^7.12.7",
+		"classnames": "2.2.6",
 		"node-sass": "5.0.0",
 		"nodemon": "^2.0.6",
 		"react": "^17.0.1"
-	},
-	"dependencies": {
-		"classnames": "2.2.6"
 	}
 }
