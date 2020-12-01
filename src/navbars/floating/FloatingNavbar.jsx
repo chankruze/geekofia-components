@@ -12,13 +12,19 @@ import classNames from 'classnames';
 import styles from './FloatingNavbar.module.css';
 
 const FloatingNavbar = (props) => {
-	const { className, theme, navLinks, activeMenu, setActiveMenu } = props;
+	const {
+		className,
+		isDarkTheme,
+		navLinks,
+		activeMenu,
+		setActiveMenu
+	} = props;
 
 	return (
 		<div
 			className={classNames(
 				[styles.fnb_root],
-				[styles[theme]],
+				{ [styles.dark]: isDarkTheme },
 				className
 			)}
 		>
@@ -29,7 +35,7 @@ const FloatingNavbar = (props) => {
 						key={`${index}-${name}`}
 						className={classNames(
 							[styles.fnb_menu_wrapper],
-							[styles[theme]],
+							{ [styles.dark]: isDarkTheme },
 							{ [styles.active]: activeMenu === name }
 						)}
 						onClick={() => setActiveMenu(name)}

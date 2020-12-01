@@ -29,7 +29,7 @@ const App = () => {
 				</div>
 
 				<FloatingNavbar
-					theme={darkTheme ? 'dark' : ''}
+					isDarkTheme={darkTheme}
 					navLinks={links}
 					activeMenu={activeMenu}
 					setActiveMenu={setActiveMenu}

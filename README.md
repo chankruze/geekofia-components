@@ -7,137 +7,100 @@ Copyright (c) Geekofia 2020 and beyond
 
 Some of my personal (and hopefully useful) React hooks to speed-up project development.
 
-## 🎣 Hooks
+## ⚛️ Components
 
--   useInputText
--   useInputFloat
--   useInputCheckBox
--   useInputSelect
--   useLocalStorage
+-   Floating Navbar
 
 ## Installation
 
 ```bash
 # with npm
-npm i geekofia-hooks
+npm i geekofia-components
 
 # with yarn
-yarn add geekofia-hooks
+yarn add geekofia-components
 ```
 
 ## Usage
 
-### `useInputText`
+### `Floating Navbar`
 
 ```js
-// import
-import { useInputText } from 'geekofia-hooks';
+//////////////////
+// NavLinks.js //
+////////////////
+import React from 'react';
+import { MdHome, MdSearch, MdInfo } from 'react-icons/md';
+import { NavLink } from 'react-router-dom';
 
-// component
-const App = () => {
-	// init hook (array destructuring)
-	// default value: string
-	const [textVal, bindTextVal, resetTextVal] = useInputText('default value');
-
-	return (
-		<div>
-			{/* bind the useInputText hook */}
-			<input type="text" {...bindTest} />
-		</div>
-	);
-};
+export const links = [
+	{
+		name: 'Home',
+		navLink: (
+			<NavLink exact to="/">
+				<MdHome size={40} />
+			</NavLink>
+		)
+	},
+	{
+		name: 'Search',
+		navLink: (
+			<NavLink exact to="/search">
+				<MdSearch size={40} />
+			</NavLink>
+		)
+	},
+	{
+		name: 'Info',
+		navLink: (
+			<NavLink exact to="/about">
+				<MdInfo size={40} />
+			</NavLink>
+		)
+	}
+];
 ```
 
-### `useInputFloat` (to store Int, Float)
-
 ```js
-// import
-import { useInputFloat } from 'geekofia-hooks';
+//////////////
+// App.jsx //
+////////////
+import React, { useState } from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+// import floating navbar
+import { FloatingNavbar } from 'geekofia-components';
+// import nav menu items
+import { links } from './NavLinks';
+// component imports
+import Search from './Search';
+import Home from './Home';
+import About from './About';
 
 // component
 const App = () => {
-	// init hook (array destructuring)
-	// default value: number
-	const [floatVal, bindFloatVal, resetFloatVal] = useInputFloat(5.0);
+	// dark theme state (boolean)
+	// uses geekofia-hooks (can use usestate)
+	const [darkTheme, bindDarkTheme] = useInputCheckBox(false);
+	// active menu state
+	const [activeMenu, setActiveMenu] = useState(null);
 
 	return (
-		<div>
-			{/* bind the useInputFloat hook */}
-			<input type="number" {...bindFloatVal} />
-		</div>
-	);
-};
-```
+		<BrowserRouter>
+			<div>
+				<FloatingNavbar
+					isDarkTheme={darkTheme}
+					navLinks={links}
+					activeMenu={activeMenu}
+					setActiveMenu={setActiveMenu}
+				/>
 
-### `useInputCheckBox`
-
-```js
-// import
-import { useInputCheckBox } from 'geekofia-hooks';
-
-// component
-const App = () => {
-	// init hook (array destructuring)
-	// default value: boolean (checked state)
-	const [checkBox, bindCheckBox, resetCheckBox] = useInputCheckBox(true);
-
-	return (
-		<div>
-			{/* bind the useInputCheckBox hook */}
-			<input type="checkbox" {...bindCheckBox} />
-		</div>
-	);
-};
-```
-
-### `useInputSelect`
-
-```js
-// import
-import { useInputSelect } from 'geekofia-hooks';
-
-// component
-const App = () => {
-	// init hook (array destructuring)
-	// default value: boolean (checked state)
-	const [options, bindOptions, resetOptions] = useInputSelect(
-		'default-option-value'
-	);
-
-	return (
-		<div>
-			{/* bind the useInputSelect hook */}
-			<select type="text" {...bindOptions}>
-				<option value="val1">1st option</option>
-				<option value="val2">2nd option</option>
-				...
-				<option value="valn">nth option</option>
-			</select>
-		</div>
-	);
-};
-```
-
-### `useLocalStorage`
-
-```js
-// import
-import { useLocalStorage } from 'geekofia-hooks';
-
-// component
-const App = () => {
-	// init hook (array destructuring)
-	const [fontSize, setFontSize] = useLocalStorage('font_size', 16);
-
-	return (
-		<div>
-			{/* bind the useLocalStorage hook */}
-			<input
-				type="number"
-				value={fontSize}
-				onChange={(e) => setFontSize(e.target.value)}
-			/>
-		</div>
+				<Switch>
+					<Route exact path="/" component={Home} />
+					<Route exact path="/search" component={Search} />
+					<Route exact path="/about" component={About} />
+				</Switch>
+			</div>
+		</BrowserRouter>
 	);
 };
 ```
